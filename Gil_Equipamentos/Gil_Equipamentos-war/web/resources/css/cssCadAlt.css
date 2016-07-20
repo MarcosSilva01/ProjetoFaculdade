@@ -1,0 +1,64 @@
+/* Credit to bootsnipp.com for the css for the color graph */
+html, body{
+    background: url("../img/fundoProduto.jpg") no-repeat fixed;
+    background-size: cover;
+}
+
+.ajuste{
+    margin-bottom: 5px;
+}
+
+.colorgraph {
+    height: 5px;
+    border-top: 0;
+    background: #c4e17f;
+    border-radius: 5px;
+    background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+    background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+    background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+    background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+}
+
+div > div > div{
+    margin-top: 10px;
+    position: relative;
+    display: block;
+}
+
+#central{
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0pt 2px 5px rgba(105, 108, 109, 0.7),	0px 0px 8px 5px rgba(208, 223, 226, 0.4) inset;
+    padding-bottom: 20px;
+}
+
+.retornar{
+    text-align: right;
+    padding: 5px;
+    padding-right: 2%; 
+    box-shadow: 0pt 2px 5px rgba(105, 108, 109, 0.7),	0px 0px 8px 5px rgba(208, 223, 226, 0.4) inset;
+}
+
+.retornar a{
+    text-decoration: none;
+    color: #099;
+}
+
+.img-produto{
+    margin-left: 0px;
+    text-align: left;
+}
+
+.img-second{
+    margin-bottom: -150px;
+}
+
+.ui-spinner-input{
+    text-align: left;
+    padding-right: 20px;
+}
+
+.ui-inputfield{
+    padding: 5px;
+    padding-right: 0px;
+}

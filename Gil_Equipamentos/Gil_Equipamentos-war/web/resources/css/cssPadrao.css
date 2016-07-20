@@ -1,0 +1,107 @@
+html, body{
+    padding: 0px;
+    margin: 0px;
+    background: url("../img/fundoProduto.jpg") no-repeat fixed;
+    background-size: cover;
+}
+
+.search{
+    margin-top: 25px;
+}
+
+.btn-carrinho{
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    margin: 0px;
+}
+
+.div-carrinho{
+    margin-bottom: 0px;
+    padding-right: 30px;
+    text-align: right;
+}
+
+footer{
+    margin-top: 20px;
+    padding-top: 5px;
+    background-color: rgba(192,192,192,.7);
+    margin-left: -12px;
+    margin-right: -12px;
+    padding-bottom: 5px;
+}
+
+.active-second a, .active-second #link{
+    background-color: #ccc;
+}
+
+.nav-pills > li.active > a:hover{
+    background-color: #00bce7;
+}
+
+/*Teste*/
+
+.dropdown-function:hover > ul{
+    display: block;
+}
+
+.dropdown-function > ul {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    width: 130%;
+    font-size: 14pt;
+    z-index: 10;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.dropdown-function ul li{
+    display: block;
+    margin: 10px;
+}
+
+.dropdown-function ul li img{
+    margin-right: 10px;
+    margin-left: -30px;
+    background: white;
+    border-radius: 100%;
+    padding: 5px;
+}
+
+.dropdown-function ul li a,visited{
+    color: #ccc;
+}
+.dropdown-function ul li a:hover{
+    color: white;
+    text-decoration: none;
+}
+
+/*Outro teste*/
+
+.dropdown-function > ul:hover > ul{
+    display: block;
+}
+
+.dropdown-function ul ul{
+    background-color: #333;
+    font-size: 10pt;
+    z-index: 10;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin-left: -30px;
+}
+
+.dropdown-function > ul > li{
+    display: block;
+    margin: 10px;
+}
+
+.dropdown-function ul ul li a,visited{
+    color: #ccc;
+}
+
+.dropdown-function ul ul li a:hover{
+    color: white;
+    text-decoration: none;
+}

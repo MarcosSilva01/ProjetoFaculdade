@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Detalhe de Produtos</title>
+        <h:outputStylesheet name="css/bootstrap-theme.min.css" />
+        <h:outputStylesheet name="css/bootstrap.css" />
+        <h:outputStylesheet name="css/bootstrap.min.css" />
+        <link href="resources/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+        <h:outputStylesheet name="css/Css_Home.css" />
+        <link href="resources/css/cssDetalhesProduto.css" type="text/css" rel="stylesheet"/>
+        <h:outputStylesheet name="css/dropDown.css" />
+        <h:outputScript name="js/bootstrap.min.js" />
+        <meta name="viewport" content="width=device-width, user-scalable=no"/>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+
+    </h:head>
+    <h:body>
+        <ui:composition template="./template/modeloPadrao.xhtml">
+            <ui:define name="recheio">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-7 col-lg-6 col-sm-12 col-xs-12" style="margin-top:20px;">
+                            <div>
+                                <!-- Imagem abaixo para tamanho MD -->
+                                <div style="width: 500px; height: 370px;" class="thumbnail text-center hidden-sm hidden-xs hidden-lg">
+                                    <h:graphicImage name="#{compraBean.detalhesProd.imagemProduto}" style="height: 340px;" height="100" library="imgProduto"/>
+                                </div>
+                                <!-- Imagem abaixo para tamanho LG -->
+                                <div style="width: 500px; height: 370px;" class="thumbnail text-center hidden-sm hidden-xs hidden-md">
+                                    <h:graphicImage name="#{compraBean.detalhesProd.imagemProduto}" style="height: 340px;" library="imgProduto"/>
+                                </div>
+                                <!-- Imagem abaixo para tamanho XS -->
+                                <div class="thumbnail text-center  col-xs-12 hidden-lg hidden-md hidden-sm">
+                                    <h:graphicImage name="#{compraBean.detalhesProd.imagemProduto}" class="img-thumbnail" height="120" library="imgProduto"/>
+                                </div>
+                                <!-- Imagem abaixo para tamanho SM -->
+                                <div class="thumbnail text-center col-sm-12 hidden-lg hidden-md hidden-xs">
+                                    <h:graphicImage name="#{compraBean.detalhesProd.imagemProduto}" class="img-thumbnail" library="imgProduto"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-5 col-lg-6 col-sm-12 col-xs-12 panel panel-info" style="margin-top:20px;">
+                            <div class="panel-body">
+                                <div class="col-md-12 col-lg-12">
+                                    <div class="col-md-12 col-lg-12">
+                                        <p class="text-info">
+                                            Avaliação do produto <span class="text-yellow"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span></span>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-12 col-lg-12">
+                                        <h3><h:outputText value="#{compraBean.detalhesProd.nome}"/> </h3>
+                                        <hr/>
+                                        <h2><h:outputText value="#{compraBean.detalhesProd.valorVenda}"> <f:convertNumber type="currency" locale="pt-BR" /></h:outputText> </h2>
+                                        <h4>6x de <h:outputText value="#{compraBean.parcela}"><f:convertNumber type="currency" locale="pt-BR" /></h:outputText> <b>sem juros</b></h4>
+                                        <h4>Calcular frete</h4>
+                                    </div>
+                                    <div class="col-md-12 col-lg-12">
+                                        <p:inputText style="width: 120px;"/>&nbsp;<button>OK</button>
+                                        <label>&nbsp;&nbsp;&nbsp;Entrega em x dia(s)</label>
+                                    </div>
+
+                                    <div class="col-lg-12 text-center">
+                                        <hr/>
+                                        <c:if test="#{usuarioBean.usuario.tipo == 'Administrador' or usuarioBean.usuario.tipo == 'Funcionario'}">
+                                            <h:form prependId="false">
+                                                <h:commandButton class="btn btn-success btn-right btn-lg" disabled="true" value="Comprar" action="#{compraBean.addCarrinho(1)}"/>
+                                            </h:form>
+                                        </c:if>
+                                        <c:if test="#{usuarioBean.usuario.tipo != 'Administrador' and usuarioBean.usuario.tipo != 'Funcionario'}">
+                                            <h:form prependId="false">
+                                                <h:commandButton class="btn btn-success btn-right btn-lg" value="Comprar" action="#{compraBean.addCarrinho(1)}"/>
+                                            </h:form>
+                                        </c:if>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="panel panel-primary col-md-12 col-lg-12 col-sm-12 col-xs-12" style="margin-top: 20px;">
+                            <div class="panel-body">
+                                <h2><b>Informações do produto</b></h2>
+                            </div>
+                            <div class="panel-footer">
+                                <h3><h:outputLabel value="#{compraBean.detalhesProd.breveDescricao}"/></h3>
+                                <h:outputText value="#{compraBean.detalhesProd.descricao}"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

@@ -1,0 +1,186 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <meta charset='utf-8'/>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <meta name="viewport" content="width=device-width, user-scalable=no"/>
+                <title>Cadastro de Funcionário</title>
+            </f:facet>
+
+            <link href="resources/css/cssCadAlt.css" type="text/css" rel="stylesheet"/>
+            <h:outputStylesheet name="css/bootstrap-theme.min.css" />
+            <h:outputStylesheet name="css/bootstrap.css" />
+            <h:outputStylesheet name="css/bootstrap.min.css" />
+            <h:outputStylesheet name="css/Css_Home.css" />
+            <h:outputStylesheet name="css/dropDown.css" />
+            <h:outputScript name="js/bootstrap.min.js" />
+
+        </h:head>
+
+        <h:body>
+            <c:if test="#{usuarioBean.usuario.tipo != 'Administrador'}">
+                
+            </c:if>
+                
+            <ui:composition template="./template/modeloPadrao.xhtml">
+                <ui:define name="recheio">
+                    <div class="container-fluid">
+                        <div class="rowcol-lg-8 col-md-8 col-sm-10 col-xs-10 col-lg-offset-2 col-md-offset-2 col-sm-offset-1 col-xs-offset-1" id="central">
+                            <div class="" style="margin-bottom: -10px;">
+                                <h2>Cadastro de Funcionário</h2>
+                                <h3>Bem vindo ao cadastro de Funcionários #{usuarioBean.usuario.nome}</h3>
+                            </div>
+                            <div class="col-lg-12">
+                                <hr class="colorgraph"/>
+                            </div>
+                            <h:form id="funcionario">
+                                <p:messages id="messages" />
+                                <div class="col-lg-12" style="padding: 0px;">
+                                    <div class="col-lg-6" style="margin-bottom: 10px;">
+                                        <h:outputLabel id="lblNome" value="Nome Completo:"/>
+                                        <h:inputText id="txtNome" class="form-control" value="#{funcionarioBean.funcionario.nome}" pt:placeholder="Nome Completo" pt:requiredMessage="Campo nome é necessário"/>
+                                    </div>
+                                    <div class="col-lg-6" style="margin-bottom: 10px;">
+                                        <h:outputLabel id="lblEmail" value="E-mail:"/>
+                                        <h:inputText id="txtEmail" class="form-control" value="#{funcionarioBean.funcionario.email}" pt:placeholder="E-mail" required="true"/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12" style="padding: 0px;">
+                                    <div class="col-lg-6" style="margin-bottom: 10px;">
+                                        <h:outputLabel id="lblSenha" value="Senha:"/>
+                                        <h:inputSecret id="txtSenha" class="form-control" value="#{funcionarioBean.funcionario.senha}" pt:placeholder="Senha de Acesso" required="true"/>
+                                    </div>
+                                    <div class="col-lg-6" style="margin-bottom: 10px;">
+                                        <h:outputLabel id="lblConfirmarSenha" value="Confirmar Senha:"/>
+                                        <h:inputSecret id="txtConfirmarSenha" class="form-control" value="#{funcionarioBean.funcionario.confSenha}" pt:placeholder="Confirmar Senha" required="true"/>
+                                    </div>
+                                </div>  
+                                <div class="col-lg-12" style="padding: 0px;">
+                                    <div class="col-lg-6" style="margin-bottom: 10px;">
+                                        <h:outputLabel id="lblNomeDoPai" value="Nome do Pai:"/>
+                                        <h:inputText id="txtNomeDoPai" class="form-control" value="#{funcionarioBean.funcionario.nomePai}" pt:placeholder="Nome do Pai" required="true"/>
+                                    </div>
+                                    <div class="col-lg-6" style="margin-bottom: 10px;">
+                                        <h:outputLabel id="lblNomeDoMae" value="Nome da Mãe:"/>
+                                        <h:inputText id="txtNomeDoMae" class="form-control" value="#{funcionarioBean.funcionario.nomeMae}" pt:placeholder="Nome da Mãe" required="true"/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12" style="padding: 0px;">
+                                    <div class="col-lg-3" style="margin-bottom: 10px;">
+                                        <h:outputLabel id="lblDataDeNascimento" value="Data de Nascimento:"/>
+                                        <p:calendar id="txtDataDeNascimento" value="#{funcionarioBean.funcionario.dtNascimento}" pt:placeholder="Data de Nascimento" required="true"/>
+                                    </div>
+                                    <div class="col-lg-3" style="margin-bottom: 10px;">
+                                        <h:outputLabel id="lblCPF" value="CPF:"/>
+                                        <h:inputText id="txtCPF" class="form-control" value="#{funcionarioBean.funcionario.cpf}" pt:placeholder="CPF" required="true"/>
+                                    </div>
+                                    <div class="col-lg-3" style="margin-bottom: 10px;">
+                                        <h:outputLabel id="lblRG" value="RG:"/>
+                                        <h:inputText id="txtRG" class="form-control" value="#{funcionarioBean.funcionario.rg}" pt:placeholder="Número da Carteira de Registro (RG)" required="true"/>
+                                    </div>
+                                    <div class="col-lg-3" style="margin-bottom: 10px;">
+                                        <h:outputLabel id="lblSexo" value="Sexo:"/>
+                                        <h:selectOneMenu id="txtSexo" class="form-control" value="#{funcionarioBean.funcionario.sexo}" required="true">
+                                            <f:selectItem id="lblSelecioneSexo" itemValue="Selecione o Sexo" itemLabel="Selecione o Sexo" />
+                                            <f:selectItem id="lblMasculino" itemValue="Masculino" itemLabel="Masculino" />
+                                            <f:selectItem id="lblFeminino" itemValue="Feminino" itemLabel="Feminino" />
+                                        </h:selectOneMenu>
+                                    </div>
+                                </div> 
+                                <div class="col-lg-12" style="padding: 0px;">
+                                    <div class="col-lg-6" style="margin-bottom: 10px;">
+                                        <h:outputLabel id="lblNaturalidade" value="Naturalidade:"/>
+                                        <h:inputText id="txtNaturalidade" class="form-control" value="#{funcionarioBean.funcionario.naturalidade}" pt:placeholder="Naturalidade" required="true"/>
+                                    </div>
+                                    <div class="col-lg-6" style="margin-bottom: 10px;">
+                                        <h:outputLabel id="lblEstadoCivil" value="Estado Civil:"/>
+                                        <h:selectOneMenu id="txtEstadoCivil" class="form-control" value="#{funcionarioBean.funcionario.estadoCivil}" required="true">
+                                            <f:selectItem id="lblSelecioneEstadoCivil" itemValue="Selecione o Estado Civil" itemLabel="Selecione o Estado Civil" />
+                                            <f:selectItem id="lblSolteiro" itemValue="Solteiro" itemLabel="Solteiro" />
+                                            <f:selectItem id="lblNamorando" itemValue="Namorando" itemLabel="Namorando" />
+                                            <f:selectItem id="lblNoivo" itemValue="Noivo" itemLabel="Noivo" />
+                                            <f:selectItem id="lblCasado" itemValue="Casado" itemLabel="Casado" />
+                                            <f:selectItem id="lblViuvo" itemValue="Víuvo" itemLabel="Víuvo" />
+                                        </h:selectOneMenu>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12" style="padding: 0px;">
+                                    <div class="col-lg-4" style="margin-bottom: 10px;">
+                                        <h:outputLabel id="lblTelefone" value="Telefone Residencial:"/>
+                                        <h:inputText id="txtTelefone" class="form-control" value="#{funcionarioBean.funcionario.telefone}" pt:placeholder="Telefone Residencial" required="true"/>
+                                    </div>
+                                    <div class="col-lg-4" style="margin-bottom: 10px;">
+                                        <h:outputLabel id="lblCelular" value="Celeluar:"/>
+                                        <h:inputText id="txtCelular" class="form-control" value="#{funcionarioBean.funcionario.celular}" pt:placeholder="Telefone Celular" required="true" requiredMessage="Campo celular é necessário"/>
+                                    </div>
+                                    <div class="col-lg-4" style="margin-bottom: 10px;">
+                                        <h:outputLabel id="lblCEP" value="CEP:"/>
+                                        <h:inputText id="txtCEP" class="form-control" value="#{funcionarioBean.funcionario.cep}" pt:placeholder="CEP" required="true"/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12" style="padding: 0px;">
+                                    <div class="col-lg-8" style="margin-bottom: 10px;">
+                                        <h:outputLabel id="lblEndereco" value="Endereço:"/>
+                                        <h:inputText id="txtEndereco" class="form-control" value="#{funcionarioBean.funcionario.endereco}" pt:placeholder="Endereço Residencial" required="true"/>
+                                    </div>
+                                    <div class="col-lg-4" style="margin-bottom: 10px;">
+                                        <h:outputLabel id="lblNumeroResidencia" value="Número da Residência:"/>
+                                        <h:inputText id="txtNumeroResidencia" class="form-control" value="#{funcionarioBean.funcionario.numeroResidencia}" pt:placeholder="Número da Residência" required="true"/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12" style="padding: 0px;">
+                                    <div class="col-lg-6" style="margin-bottom: 10px;">
+                                        <h:outputLabel id="lblReferencia" value="Referência:"/>
+                                        <h:inputText id="txtReferencia" class="form-control" value="#{funcionarioBean.funcionario.referencia}" pt:placeholder="Referência Residencial" required="true"/>
+                                    </div>
+                                    <div class="col-lg-6" style="margin-bottom: 10px;">
+                                        <h:outputLabel id="lblComplemento" value="Complemento:"/>
+                                        <h:inputText id="txtComplemento" class="form-control" value="#{funcionarioBean.funcionario.complemento}" pt:placeholder="Complemento" required="true"/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12" style="padding: 0px;">
+                                    <div class="col-lg-4" style="margin-bottom: 10px;">
+                                        <h:outputLabel id="lblBairro" value="Bairro:"/>
+                                        <h:inputText id="txtBairro" class="form-control" value="#{funcionarioBean.funcionario.bairro}" pt:placeholder="Bairro" required="true"/>
+                                    </div>
+                                    <div class="col-lg-4" style="margin-bottom: 10px;">
+                                        <h:outputLabel id="lblEstado" value="Estado:"/>
+                                        <h:inputText id="txtEstado" class="form-control" value="#{funcionarioBean.funcionario.estado}" pt:placeholder="Estado" required="true"/>
+                                    </div>
+                                    <div class="col-lg-4" style="margin-bottom: 10px;">
+                                        <h:outputLabel id="lblCidade" value="Cidade:"/>
+                                        <h:inputText id="txtCidade" class="form-control" value="#{funcionarioBean.funcionario.cidade}" pt:placeholder="Cidade" required="true" requiredMessage="Campo celular é necessário"/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <hr class="colorgraph"/>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="col-lg-4">
+                                        <h:commandButton id="btnSalvar" class="btn btn-success col-lg-offset-4" value="Salvar" action="#{funcionarioBean.cadastrar()}"/>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <h:commandButton id="btnLimpar" class="btn btn-warning col-lg-offset-4" value="Limpar" action="#{funcionarioBean.limpar()}"/>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <h:commandButton id="btnVoltar" class="btn btn-primary col-lg-offset-4" value="Voltar" action="home"/>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </ui:define>
+            </ui:composition>
+        </h:body>
+    </f:view>
+</html>
+

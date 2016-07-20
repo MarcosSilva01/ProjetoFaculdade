@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Relatório de Venda</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="./template/modeloPadrao.xhtml">
+            <ui:define name="recheio">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                            <div class="col-lg-12">
+                                <div class="thumbnail" style="padding: 10px;">
+                                    <table class="table table-hover">
+
+                                        <th></th>
+                                        <th class="text-center">Produto</th>
+                                        <th class="text-center">Nome do Produto</th>
+                                        <th class="text-center">Quantidade Vendida</th>
+                                        <th class="text-center">Dada da Venda</th>
+                                        <th class="text-center">Nome do Cliente</th>
+                                        <th class="text-center">Visualizar no gráfico</th>
+
+                                        <ui:repeat value="#{vendaBean.lista()}" var="v">
+                                            <tr class="text-primary">
+
+                                                <td class="text-center"><h:graphicImage library="imgProduto" name="#" style="width: 75px;"/></td>
+                                                <td class="text-center"></td>
+                                                <td class="text-center"></td>
+                                                <td class="text-center"></td>
+                                                <td class="text-center"></td>
+                                                <td class="text-center"></td>
+                                                <td class="text-center"></td>
+                                                <h:form>
+                                                    <td class="text-center">
+                                                        <h:commandLink class="btn-info btn glyphicon glyphicon-pencil"  action="#" style="margin-right: 10px;"/>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <h:commandLink class="btn-danger btn glyphicon glyphicon-ban-circle" action="#" onclick="return confirm('Você tem certeza?')"></h:commandLink> 
+                                                    </td>
+                                                </h:form>
+                                            </tr>
+                                        </ui:repeat>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body> 
+</html>
+

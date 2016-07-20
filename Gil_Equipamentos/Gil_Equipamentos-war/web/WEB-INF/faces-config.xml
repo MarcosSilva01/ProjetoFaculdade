@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>home</from-outcome>
+            <to-view-id>/Home.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>telaLogin</from-outcome>
+            <to-view-id>/Login.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>venda</from-outcome>
+            <to-view-id>/RelatorioVenda.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>carrinho</from-outcome>
+            <to-view-id>/Carrinho.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>telaCadastrarProduto</from-outcome>
+            <to-view-id>/CadastrarProduto.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>telaListaProduto</from-outcome>
+            <to-view-id>/Produtos.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>telaCadastrarClienteFisico</from-outcome>
+            <to-view-id>/CadastrarClienteFisico.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>telaCadastrarClienteJuridico</from-outcome>
+            <to-view-id>/CadastrarClienteJuridico.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>cadastroFuncionario</from-outcome>
+            <to-view-id>/CadastroFuncionario.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>pagamento</from-outcome>
+            <to-view-id>/Pagamento.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>detalhesProduto</from-outcome>
+            <to-view-id>/Detalhes_Produto.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>alterarProd</from-outcome>
+            <to-view-id>/AlterarProduto.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>listaProd</from-outcome>
+            <to-view-id>/ListaProdutos.xhtml</to-view-id>
+        </navigation-case>
+   </navigation-rule>
+    <managed-bean>
+        <description>Bean para criar usuarios</description>
+        <managed-bean-name>cliente</managed-bean-name>
+        <managed-bean-class>sp.senac.bean.ClienteBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+</faces-config>

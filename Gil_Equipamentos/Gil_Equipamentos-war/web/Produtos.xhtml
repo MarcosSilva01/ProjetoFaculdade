@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Produtos</title>
+        <link href="resources/css/cssPadrao.css" type="text/css" rel="stylesheet"/>
+        <meta charset='utf-8'/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, user-scalable=no"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <h:outputStylesheet name="css/bootstrap-theme.min.css" />
+        <h:outputStylesheet name="css/bootstrap.css" />
+        <h:outputStylesheet name="css/bootstrap.min.css" />
+        <link href="resources/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+        <link href="resources/css/cssPadrao.css" type="text/css" rel="stylesheet"/>
+        <h:outputStylesheet name="css/Css_Home.css" />
+        <h:outputStylesheet name="css/dropDown.css" />
+        <h:outputScript name="js/bootstrap.min.js" />
+        <link rel="stylesheet" href="resources/css/styles.css"/>
+        <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+        <script src="resources/js/script.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    </h:head>
+    <h:body>
+        <ui:composition template="./template/modeloPadrao.xhtml">
+            <ui:define name="recheio">
+                <div class="container">
+                    <ui:fragment rendered="#{flash.mensagem != null}">
+                        <div class="alert alert-#{flash.mensagem.tipo}" role="alert">
+                            <p>#{flash.mensagem.msg}</p>
+                        </div>
+                    </ui:fragment>
+                    <ui:repeat value="#{produtoBean.listarTodosProdutos()}" var="prod">
+                        <div class="col-sm-12 col-lg-4 col-xs-12 col-md-4">
+                            <div class="thumbnail">
+                                <div style="width: 350px; height: 300px;" class="img-responsive text-center hidden-sm hidden-xs">
+                                    <h:graphicImage library="imgProduto" class="img-responsive" name="#{prod.imagemProduto}" height="300"/>
+                                </div>
+                                <div class="img-responsive text-center hidden-lg hidden-md">
+                                    <h:graphicImage library="imgProduto" class="img-responsive" name="#{prod.imagemProduto}" height="300"/>
+                                </div>
+                                <div class="caption">
+                                    <h4 class="pull-right" >
+                                        <h:outputText value="#{prod.valorVenda}">
+                                            <f:convertNumber type="currency" locale="pt-BR" />
+                                        </h:outputText>
+                                    </h4>
+                                    <h4><a href="#"><h:outputText value="#{prod.nome}"/></a>
+                                    </h4>
+                                    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" style="height: 65px;">
+                                        <p><h:outputText value="#{prod.breveDescricao}"/></p>
+                                    </div>
+                                    <h:form prependId="false" class="hidden-sm hidden-xs">
+                                        <c:if test="#{usuarioBean.usuario.tipo != 'Administrador' and usuarioBean.usuario.tipo != 'Funcionario'}">
+                                            <h:commandButton class="btn btn-success" value="Comprar" style="margin-right: 10px; " action="#{compraBean.adicionarProduto(prod.id, 1)}"/>
+                                        </c:if>
+                                        <h:commandButton class="btn btn-info" value="Detalhes" action="#{compraBean.detalhesProduto(prod.id)}"/>
+                                    </h:form>
+
+                                    <h:form prependId="false" class="hidden-lg hidden-md">
+                                        <c:if test="#{usuarioBean.usuario.tipo != 'Administrador' and usuarioBean.usuario.tipo != 'Funcionario'}">
+                                            <h:commandButton class="btn btn-success btn-block" value="Comprar" style="margin-right: 10px; " action="#{compraBean.adicionarProduto(prod.id, 1)}"/>
+                                        </c:if>
+                                        <h:commandButton class="btn btn-info btn-block" value="Detalhes" action="#{compraBean.detalhesProduto(prod.id)}"/>
+                                    </h:form>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </ui:repeat>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

@@ -1,0 +1,212 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Pagamento</title>
+        <meta name="viewport" content="width=device-width, user-scalable=no"/>
+    </h:head>
+    <h:body>
+        <ui:composition template="./template/modeloPadrao.xhtml">
+            <ui:define name="recheio">
+                <div class="container" style="background-color: white; padding: 15px; background: rgba(247, 247, 247,0.7); border: 1px solid rgba(147, 184, 189,0.8); box-shadow: 0pt 2px 5px rgba(105, 108, 109, 0.7),	0px 0px 8px 5px rgba(208, 223, 226, 0.4) inset; border-radius: 5px;">
+                    <div class="row" >
+                        <div class="col-md-12 text-center">
+                            <h4>Esse espaço está reservado para colocar o passo a passo das compras, Carrinho, identificação, entrega e pagamento, confirmação</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12 col-xs-12 col-lg-6">
+                            <div class="col-lg-12">
+                                <div class="thumbnail">
+                                    <table class="table" style="background: #fff;">
+                                        <thead>
+                                            <tr>
+                                                <th>Endereço de entrega</th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <c:if test="#{usuarioBean.usuario.tipo == 'Fisico'}">
+                                                <tr>
+                                                    <td><h:outputText value="#{clienteBean.fisico.nome}"/> </td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><h:outputText value="#{clienteBean.fisico.endereco}"/> - Nº <h:outputText value="#{clienteBean.fisico.numeroResidencia}"/> - <h:outputText value="#{clienteBean.fisico.bairro}"/></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>CEP: <h:outputText value="#{clienteBean.fisico.cep}"/></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><h:outputText value="#{clienteBean.fisico.cidade}"/> - <h:outputText value="#{clienteBean.fisico.estado}"/> </td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><h:outputText value="#{clienteBean.fisico.email}"/> </td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            </c:if>
+                                            <c:if test="#{usuarioBean.usuario.tipo == 'Juridico'}">
+                                                <tr>
+                                                    <td><h:outputText value="#{clienteBean.juridico.nomeResponsavel}"/> </td>
+                                                    <td></td>
+                                                    <td></td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td><h:outputText value="#{clienteBean.juridico.endereco}"/> - Nº <h:outputText value="#{clienteBean.juridico.numeroEmpresa}"/> - <h:outputText value="#{clienteBean.juridico.bairro}"/></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>CEP: <h:outputText value="#{clienteBean.juridico.cep}"/></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><h:outputText value="#{clienteBean.juridico.cidade}"/> - <h:outputText value="#{clienteBean.juridico.estado}"/> </td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><h:outputText value="#{clienteBean.juridico.email}"/> </td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            </c:if>
+                                            <tr>
+                                                <td><a href="#">Adicionar endereço de entrega</a></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12 col-lg-6">
+                            <div class="col-lg-12">
+                                <div class="thumbnail">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Resumo da entrega</th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th>Valor</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <h:form>
+                                                    <td>Produtos <a class="text-info" data-toggle="modal" data-target=".bs-example-modal-lg">Visualizar produtos</a></td>
+                                                </h:form>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>#{compraBean.itens.size()}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Valor total dos pedidos</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><h:outputText value="#{compraBean.total}"><f:convertNumber type="currency" locale="pt-BR"/></h:outputText></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Frete para (CIDADE)</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><h:outputText value="#{compraBean.calcCep}"><f:convertNumber type="currency" locale="pt-BR"/></h:outputText></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabes">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="gridSystemModalLabel">Lista de produtos</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table class="table table-hover">
+                                            <tr>
+                                                <th></th>
+                                                <th><h:outputText value="Nome"/> </th>
+                                                <th><h:outputText value="Quantidade"/> </th>
+                                                <th><h:outputText value="Valor Unitário"/> </th>
+                                                <th><h:outputText value="Valor Total"/> </th>
+
+
+                                            </tr>
+                                            <ui:repeat value="#{compraBean.itens}" var="cart">
+                                                <tr>
+                                                    <td><h:graphicImage library="imgProduto" name="#{cart.imagem}" style="width: 110px;"/></td>
+
+                                                    <td>#{cart.nome}</td>
+                                                    <td>#{cart.quantidade}</td>
+                                                    <td><h:outputText value="#{cart.valorUnitario}"><f:convertNumber type="currency" locale="pt-BR" /></h:outputText></td>
+                                                    <td><h:outputText value="#{cart.valorTotal}"><f:convertNumber type="currency" locale="pt-BR" /></h:outputText></td>
+                                                </tr>
+                                            </ui:repeat>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                            <h:form>
+                                <h:commandButton action="#{compraBean.finalizar(usuarioBean.usuario.id)}" class="btn btn-success " value="Finalizar"/>
+                            </h:form>
+                        </div>
+                    </div>
+
+                    <hr/>
+                    <div class="row">
+                        <div class="container">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><h3><b>Opções de entrega</b></h3></div>
+                            <div class="col-lg-12">
+                                <div class="col-lg-3">
+                                    <div class="thumbnail" style="border-radius: 10px;">
+                                        <label class="radio-inline">
+                                            <h:selectOneRadio class="form-control" id="console" value="{pagamentoBean.pagamento.opcaoEntrega}">
+                                                <f:selectItem itemLabel="Entrega rapida" itemValue="Entrega rapida"><h:graphicImage name="resources/img/transport.png" /></f:selectItem>
+                                                <f:selectItem itemLabel="Entrega convencional" itemValue="Entrega convencional" />
+                                            </h:selectOneRadio>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

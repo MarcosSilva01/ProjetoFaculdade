@@ -1,0 +1,251 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <meta charset='utf-8'/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <h:outputStylesheet name="css/bootstrap-theme.min.css" />
+        <h:outputStylesheet name="css/bootstrap.css" />
+        <h:outputStylesheet name="css/bootstrap.min.css" />
+        <link href="resources/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+        <link href="resources/css/cssPadrao.css" type="text/css" rel="stylesheet"/>
+        <h:outputStylesheet name="css/Css_Home.css" />
+        <h:outputStylesheet name="css/dropDown.css" />
+        <h:outputScript name="js/bootstrap.min.js" />
+        <link rel="stylesheet" href="resources/css/styles.css"/>
+        <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+        <script src="resources/js/script.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+    </h:head>
+    <h:body>
+        <div class="container-fluid">
+            <header class="row">
+                <!-- Imagem logo da empresa -->
+                <div class="col-md-2 col-lg-2 hidden-sm hidden-xs">
+                    <h:form>
+                        <h:commandLink action="home"><img src="./resources/img/gil_equipamentos.png" width="200"/></h:commandLink>
+                    </h:form>
+                </div>
+                <div class="col-sm-1 col-xs-1 hidden-md hidden-lg">
+                    <h:form>
+                        <h:commandLink action="home"><img src="./resources/img/gil_equipamentos.png" width="100" style="margin-top: 20px; margin-left: -10px;"/></h:commandLink>
+                    </h:form>
+                </div>
+                <!-- Imagem logo da empresa -->
+                <!-- Campo de busca de produtos -->
+                <div class="text-center">
+                    <div class="col-md-7 col-lg-7 col-sm-6 col-xs-6 col-xs-offset-2 col-md-offset-0 col-lg-offset-0 " id="espaco-menu">
+                        <h:form class="form">
+                            <div class="input-group search">
+                                <h:inputText class="form-control hidden-sm hidden-xs" pt:placeholder="Busque o produto que deseja aqui!"/>
+                                <h:inputText class="form-control hidden-lg hidden-md" pt:placeholder="Busque aqui!"/>
+                                <span class="input-group-addon" id="basic-addon1"><a href="#"><img src="resources/img/busca.png"/></a></span>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+                <!-- Campo de busca de produtos -->
+                <div class="col-md-3 alert">
+                    <h:form>
+                        <c:if test="#{usuarioBean.usuario.tipo != 'Fisico' and usuarioBean.usuario.tipo != 'Juridico' and usuarioBean.usuario.tipo != 'Funcionario' and usuarioBean.usuario.tipo != 'Administrador'}">
+                            <div class="text-left hidden-sm hidden-xs col-md-4">
+                                <h:commandButton action="#{usuarioBean.telaLogin()}" value="Logar" class="btn btn-primary"/>
+                            </div>
+                        </c:if>
+                        <c:if test="#{usuarioBean.usuario.tipo == 'Fisico' or usuarioBean.usuario.tipo == 'Juridico' or usuarioBean.usuario.tipo == 'Funcionario' or usuarioBean.usuario.tipo == 'Administrador'}">
+                            <div class="text-left hidden-sm hidden-xs col-md-4">
+                                <h:commandButton action="#{usuarioBean.deslogar()}" value="Sair" class="btn btn-danger"/>
+                            </div>
+                        </c:if>
+                    </h:form>
+                    <h:form>
+                        <small class="col-md-4"><b class="hidden-xs hidden-sm">Carrinho de compra (#{compraBean.itens.size()})</b></small>
+                        <h:commandLink action="carrinho" class="col-md-3">
+                            <img src="./resources/img/cart.png"/>
+                        </h:commandLink>
+                    </h:form>
+                </div>
+                <!-- Container que tem a lista de produtos no carrinho -->
+            </header>
+        </div>
+        <nav class="navbar-inverse navbar-fixed" style="margin-bottom: 20px;">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div id='cssmenu'>
+                <ul>
+                    <li class="col-xs-2 col-sm-2 hidden-lg hidden-md">
+                        <c:if test="#{usuarioBean.vazio()}">
+                            <h:form>
+                                <h:commandLink action="#{usuarioBean.telaLogin()}" style="text-decoration: none;color: rgb(221, 221, 221);font-size: 9pt;padding: 17px;font-weight: 700;text-transform: uppercase;letter-spacing: 1px;">Logar</h:commandLink>
+                            </h:form>
+                        </c:if>
+                        <c:if test="#{usuarioBean.logado()}">
+                            <h:form>
+                                <h:commandLink action="#{usuarioBean.deslogar()}" style="text-decoration: none;color: rgb(221, 221, 221);font-size: 9pt;padding: 17px;font-weight: 700;text-transform: uppercase;letter-spacing: 1px;">Sair</h:commandLink>
+                            </h:form>
+                        </c:if>
+                    </li>
+                    <li>
+                        <h:form>
+                            <h:commandLink action="home" style="text-decoration: none;color: rgb(221, 221, 221);font-size: 9pt;padding: 17px;font-weight: 700;text-transform: uppercase;letter-spacing: 1px;">Home</h:commandLink>
+                        </h:form>
+                    </li>
+                    <li>
+                        <h:form>
+                            <h:commandLink action="#{produtoBean.setCategoria('Acessório')}" style="text-decoration: none;color: rgb(221, 221, 221);font-size: 9pt;padding: 17px;font-weight: 700;text-transform: uppercase;letter-spacing: 1px;">Acessórios</h:commandLink>
+                        </h:form>
+                    </li>
+                    <li>
+                        <h:form>
+                            <h:commandLink action="#{produtoBean.setCategoria('Produto')}" style="text-decoration: none;color: rgb(221, 221, 221);font-size: 9pt;padding: 17px;font-weight: 700;text-transform: uppercase;letter-spacing: 1px;">Produtos</h:commandLink>
+                        </h:form>
+                    </li>
+                    <li>
+                        <h:form>
+                            <h:commandLink action="#{produtoBean.setCategoria('Aparelhos')}" style="text-decoration: none;color: rgb(221, 221, 221);font-size: 9pt;padding: 17px;font-weight: 700;text-transform: uppercase;letter-spacing: 1px;">Aparelhos</h:commandLink>
+                        </h:form>
+                    </li>
+                    <li class="active">
+                        <a href="#">Funções Adicionais</a>
+                        <ul>
+                            <c:if test="#{usuarioBean.usuario.tipo == 'Administrador' or usuarioBean.usuario.tipo == 'Funcionario'}">
+                                <li>
+                                    <a href="#">Produtos</a>
+                                    <ul>
+                                        <c:if test="#{usuarioBean.usuario.tipo == 'Administrador'}">
+                                            <li>
+                                                <h:form>
+                                                    <h:commandLink action="#{produtoBean.telaCadastrarProduto()}">Cadastrar Produto</h:commandLink>
+                                                </h:form>
+                                            </li>
+                                            <li>
+                                                <h:form>
+                                                    <h:commandLink action="listaProd">Listar produto</h:commandLink>
+                                                </h:form>
+                                            </li>
+                                        </c:if>
+                                    </ul>
+                                </li>
+                            </c:if>
+                            <c:if test="#{usuarioBean.usuario.tipo == 'Administrador'}">
+                                <li>
+                                    <a href="#">Funcionários</a>
+                                    <ul>
+                                        <li>
+                                            <h:form>
+                                                <h:commandLink action="#{funcionarioBean.telaCadastroFuncionario()}">Cadastrar Funcionário</h:commandLink>
+                                            </h:form>
+                                        </li>
+                                        <li>
+                                            <h:form>
+                                                <h:commandLink action="#" >Alterar Funcionário</h:commandLink>
+                                            </h:form>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </c:if>
+                            <c:if test="#{usuarioBean.usuario.tipo == 'Fisico' or usuarioBean.usuario.tipo == 'Juridico' or usuarioBean.vazio()}">
+                                <li>
+                                    <a href="#">Cliente</a>
+                                    <ul>
+                                        <c:if test="#{usuarioBean.vazio()}">
+                                            <li>
+                                                <h:form>
+                                                    <h:commandLink action="#{cliente.telaCadastrarClienteFisico()}" >Cadastrar Pessoa Físico</h:commandLink>
+                                                </h:form>
+                                            </li>
+                                            <li>
+                                                <h:form>
+                                                    <h:commandLink action="#{cliente.telaCadastrarClienteJuridico()}" >Cadastrar Pessoa Jurídico</h:commandLink>
+                                                </h:form>
+                                            </li>
+                                        </c:if>
+                                        <c:if test="#{usuarioBean.logado()}">
+                                            <li>
+                                                <h:form>
+                                                    <h:commandLink action="#" >Alterar Seus Dados</h:commandLink>
+                                                </h:form>
+                                            </li>
+                                            <li>
+                                                <h:form>
+                                                    <h:commandLink action="#" >Desativar conta</h:commandLink>
+                                                </h:form>
+                                            </li>
+                                        </c:if>
+                                    </ul>
+                                </li>
+                            </c:if>
+                            <c:if test="#{usuarioBean.usuario.tipo == 'Administrador'}">
+                                <li>
+                                    <a href="#">Relatório</a>
+                                    <ul>
+                                        <li>
+                                            <h:form>
+                                                <h:commandLink action="#{vendaBean.chamar()}" >Histórico de Venda</h:commandLink>
+                                            </h:form>
+                                        </li>
+                                        <li>
+                                            <h:form>
+                                                <h:commandLink action="#" >Relatório por Produto</h:commandLink>
+                                            </h:form>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </c:if>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+            <!-- /.container -->
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                    <!-- AREA DIFERENTE - INICIO -->
+                    <ui:insert name="recheio">
+
+                    </ui:insert>
+                    <!-- AREA DIFERENTE - FIM -->
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <footer>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-2 col-lg-2 col-xs-12 col-sm-12 footer-left">
+                            <p>
+                                <iframe id="gh-fork" src="http://ghbtns.com/github-btn.html?user=blackrockdigital&amp;repo=startbootstrap&amp;type=fork" allowtransparency="true" scrolling="0" frameborder="0" height="20px" width="55px"></iframe>
+                                <br/><iframe data-screen-name="SBootstrap" src="http://platform.twitter.com/widgets/follow_button.fd774b599f565016d763dd860cb31c79.en.html#dnt=false&amp;id=twitter-widget-1&amp;lang=en&amp;screen_name=SBootstrap&amp;show_count=false&amp;show_screen_name=true&amp;size=m&amp;time=1460305759142" title="Twitter Follow Button" style="position: static; visibility: visible; width: 131px; height: 20px;" class="twitter-follow-button twitter-follow-button-rendered" allowtransparency="true" scrolling="no" id="twitter-widget-1" frameborder="0"></iframe>
+                                <br/><iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FStartBootstrap&amp;width=450&amp;height=21&amp;colorscheme=light&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;send=false" scrolling="no" style="border:none; overflow:hidden; width:150px; height:21px;" allowtransparency="true" frameborder="0"></iframe>
+                            </p>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-xs-12 col-sm-12 col-md-offset-7 text-right">
+                            <p class="text-right hidden-xs hidden-sm">
+                                Esse E-Commerce foi feito pela empresa
+                            </p>
+                            <p class="text-right hidden-xs hidden-sm">
+                                <b>Software Coffee</b>
+                            </p>
+                            <p class="text-right hidden-xs hidden-sm">
+                                Visite nosso site: <a href="#">Software Coffe</a>
+                            </p>
+                            <p class="hidden-lg hidden-md text-right">
+                                Esse E-Commerce foi feito pela empresa <a href="#"><b>Software Coffee</b></a> 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>    
+    </h:body>
+</html>
+

@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Lista de Produtos</title>
+        <h:outputStylesheet name="css/bootstrap-theme.min.css" />
+        <h:outputStylesheet name="css/bootstrap.css" />
+        <h:outputStylesheet name="css/bootstrap.min.css" />
+        <h:outputStylesheet name="css/Css_Home.css" />
+        <h:outputStylesheet name="css/dropDown.css" />
+        <h:outputScript name="js/bootstrap.min.js" />
+        <meta name="viewport" content="width=device-width, user-scalable=no"/>
+    </h:head>
+    <h:body>
+        <ui:composition template="./template/modeloPadrao.xhtml">
+            <ui:define name="recheio">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                            <div class="col-lg-12">
+                                <div class="thumbnail" style="padding: 10px;">
+                                    <table class="table table-hover">
+
+                                        <th></th>
+                                        <th class="text-center">Produto</th>
+                                        <th class="text-center">Quantidade</th>
+                                        <th class="text-center">Qtd. Mínima</th>
+                                        <th class="text-center">Qtd. Máxima</th>
+                                        <th class="text-center">Valor Unitário</th>
+                                        <th class="text-center">Valor Venda</th>
+                                        <th class="text-center">Alterar</th>
+                                        <th class="text-center">Desativar</th>
+
+                                        <ui:repeat value="#{produtoBean.listAllProds()}" var="prod">
+                                            <tr class="text-primary">
+
+                                                <td class="text-center"><h:graphicImage library="imgProduto" name="#{prod.imagemProduto}" style="width: 75px;"/></td>
+                                                <td class="text-center">#{prod.nome}</td>
+                                                <td class="text-center">#{prod.quantidade}</td>
+                                                <td class="text-center">#{prod.qtdMinima}</td>
+                                                <td class="text-center">#{prod.qtdMaxima}</td>
+                                                <td class="text-center">#{prod.gastoProduto}</td>
+                                                <td class="text-center">#{prod.valorVenda}</td>
+                                                <h:form>
+                                                    <td class="text-center">
+                                                        <h:commandLink class="btn-info btn glyphicon glyphicon-pencil"  action="#{produtoBean.obterProduto(prod.id)}" style="margin-right: 10px;"/>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <h:commandLink class="btn-danger btn glyphicon glyphicon-ban-circle" action="#{produtoBean.desativar(prod.id)}" onclick="return confirm('Você tem certeza?')"></h:commandLink> 
+                                                    </td>
+                                                </h:form>
+                                                
+                                            </tr>
+                                        </ui:repeat>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+<!--
+<div class="container" style="background-color: white">
+                    <div class="row">
+                        <table class="table table-hover">
+
+                            <th></th>
+                            <th>Produto</th>
+                            <th>Quantidade</th>
+                            <th>Qtd. Mínima</th>
+                            <th>Qtd. Máxima</th>
+                            <th>Valor Unitário</th>
+                            <th>Valor Venda</th>
+                            <th></th>
+
+                            <ui:repeat value="#{produtoBean.listAllProds()}" var="prod">
+                                <tr class="text-primary">
+
+                                    <td><h:graphicImage library="imgProduto" name="#{prod.imagemProduto}" style="width: 75px;"/></td>
+                                    <td>#{prod.nome}</td>
+                                    <td>#{prod.quantidade}</td>
+                                    <td>#{prod.qtdMinima}</td>
+                                    <td>#{prod.qtdMaxima}</td>
+                                    <td>#{prod.gastoProduto}</td>
+                                    <td>#{prod.valorVenda}</td>
+                                    <td>
+                                        <h:form>
+                                            <h:commandButton class="btn-info btn-sm" value="Alterar" action="#{produtoBean.obterProduto(prod.id)}"/>
+                                            <h:commandButton class="btn-danger btn-sm" value="Desativar" action="#{produtoBean.desativar(prod.id)}" onclick="return confirm('Você tem certeza?')"/> 
+                                        </h:form>
+                                    </td>
+                                </tr>
+                            </ui:repeat>
+                        </table>
+                    </div>
+                </div>
+-->
